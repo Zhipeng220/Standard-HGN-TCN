@@ -512,60 +512,50 @@ python tools/visualize_topology.py \
 
 ## 📁 项目结构
 
-```
-DSA-HGN/
-├── config/                          # 配置文件
-│   ├── SHREC/
-│   │   ├── joint/                   # Joint流配置
-│   │   ├── bone/                    # Bone流配置
-│   │   ├── Jmotion/                 # J-Motion流配置
-│   │   ├── Bmotion/                 # B-Motion流配置
-│   │   └── fusion/                  # 多流融合配置
-│   └── egogesture/
-│       └── supervised/
-├── feeder/                          # 数据加载与增强
-│   ├── feeder_egogesture.py        # 主数据加载器
-│   └── tools.py                     # 数据增强函数
-├── graph/                           # 图拓扑定义
-│   ├── shrec.py                     # SHREC骨架图
-│   ├── egogesture.py               # EgoGesture骨架图
-│   └── tools.py                     # 图工具
-├── net/                             # 网络架构
-│   ├── dsa_hgn.py                  # 主模型
-│   ├── hypergraph_modules.py       # 超图卷积层
-│   ├── basic_modules.py            # GCN和TCN模块
-│   └── utils/                       # 网络工具
-├── processor/                       # 训练与评估逻辑
-│   ├── processor.py                # 基础处理器类
-│   ├── recognition.py              # 识别处理器
-│   └── io.py                        # I/O操作
-├── tools/                           # 分析与可视化工具
-│   ├── Confusion Matrix.py         # 混淆矩阵生成
-│   ├── Error Analysis.py           # 错误模式分析
-│   └── visualize_topology.py       # 拓扑可视化
-├── torchlight/                      # 训练工具
-│   └── io.py                        # 模型I/O与日志
-├── ensemble_shrec.py               # SHREC融合评估
-├── ensemble_egogesture.py          # EgoGesture融合评估
-├── main.py                          # 主入口
-└── README.md                        # 本文件
-```
-
-## ⚙️ 配置参数说明
-
-### 模型架构
-
-```yaml
-model_args:
-  in_channels: 3                     # 输入通道数 (x, y, z)
-  base_channels: 64                  # 基础特征维度
-  num_stages: 10                     # ST-GCN层数
-  inflate_stages: [5, 8]            # 通道翻倍的层
-  down_stages: [5, 8]               # 时序下采样的层
-  num_hyperedges: 16                # 超图原型数量
-  adaptive: true                     # 启用自适应图学习
-  use_virtual_conn: True            # 启用超图连接
-  drop_out: 0.0                      # Dropout率
+```text
+.
+|____tools
+| |____visualize_topology.py
+|____feeder
+| |____feeder_shrec.py
+| |____tools.py
+|____net
+| |____hypergraph_modules.py
+| |____utils
+| | |____tgcn.py
+| | |____graph.py
+| |____att_drop.py
+| |____basic_modules.py
+| |____dsa_hgn.py
+|____config
+| |____SHREC
+| | |____Jmotion
+| | | |____jmotion.yaml
+| | |____bone
+| | | |____bone_kd.yaml
+| | | |____bone.yaml
+| | |____Bmotion
+| | | |____bone_motion.yaml
+| | |____joint
+| | | |____joint.yaml
+|____processor
+| |____recognition.py
+| |____io.py
+| |____processor.py
+| |____knn_monitor.py
+|____graph
+| |____shrec.py
+| |____tools.py
+|____README.md
+|____ensemble_shrec.py
+|____main.py
+|____torchlight
+| |____io.py
+| |____setup.py
+| |____torchlight
+| | |____io.py
+| | |____gpu.py
+|____eval_gap.py
 ```
 
 ### 数据增强
