@@ -706,7 +706,7 @@ done
 
 如有问题和反馈:
 - 在 GitHub 上提交 issue
-- 邮箱: [your-email@example.com] (待更新)
+- 邮箱: [guo.zp@ouklook.com] (待更新)
 
 ---
 
